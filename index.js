@@ -4,17 +4,28 @@ const authRoute =require('./Routers/auth')
 const fs = require('fs');
 const mongoose = require('mongoose');
 
+const cors = require('cors');
+
+
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: false }));
+// Middleware to parse JSON bodies
+app.use(express.json());
 
+app.use(cors());
 
 app.get('/',(req,res)=>{
 res.send('hello world');
 })
 
+app.get('/example',(req,res)=>{
+    res.json({message:'this example of cors'})
+})
 
 
 
