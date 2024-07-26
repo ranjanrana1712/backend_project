@@ -86,11 +86,11 @@ router.post('/login', async (req, res) => {
 
 
 //to update password of existing user
-router.post('updatePassword', async (req,res)=>{
+router.post('/updatePassword', async (req,res)=>{
     try {
 
         const { email, password, newPassword } = req.body;
-        
+        console.log(req.body);
         const token = req.headers['authorization'];
 
         const userExists = await User.findOne({email});
@@ -106,7 +106,7 @@ router.post('updatePassword', async (req,res)=>{
         const verifiedToken = jwt.verify(token, process.env.TOKEN_SECRET);
         const userId = userExists._id.toString();
 
-        if(verifiedToken._id !== userExists._id){
+        if(verifiedToken._id !== userId){
             return res.status(401).send('Unauthorization');
 
         }
@@ -120,7 +120,7 @@ router.post('updatePassword', async (req,res)=>{
         })
         
     } catch (error) {
-        res.status(500).json(error.message)
+       return res.status(500).json(error.message)
         
     }
 })

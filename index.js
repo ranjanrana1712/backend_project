@@ -4,8 +4,7 @@ const authRoute =require('./Routers/auth')
 const fs = require('fs');
 const mongoose = require('mongoose');
 
-const cors = require('cors');
-
+// const cors = require('./cors')
 
 
 dotenv.config();
@@ -17,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 // Middleware to parse JSON bodies
 app.use(express.json());
 
-app.use(cors());
+// app.use(cors(cors));
 
 app.get('/',(req,res)=>{
 res.send('hello world');
