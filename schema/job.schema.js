@@ -14,12 +14,13 @@ const jobSchema = new mongoose.Schema({
         required: true
     },
     monthlySalary: {
-        type: number,
+        type: Number,
         required: true
     },
     jobType: {
         type: String,
-        enum: ['Full-Time', 'Part-Time', 'Contract', 'Freelance']
+        enum: ['Full-Time', 'Part-Time', 'Contract', 'Freelance'],
+        default:'Full-Time'
 
     },
     remote: {
@@ -27,7 +28,7 @@ const jobSchema = new mongoose.Schema({
         required: true
     },
     location: {
-        type: string,
+        type: String,
         required: true
     },
     description: {
@@ -39,7 +40,7 @@ const jobSchema = new mongoose.Schema({
         required: true
     },
     skills: {
-        type: array,
+        type: Array,
         required: true
     },
     information: {

@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const authRoute =require('./Routers/auth')
 const fs = require('fs');
 const mongoose = require('mongoose');
+const jobRouter = require('./Routers/job');
+const authMiddleware = require('./middleware/auth')
 
 // const cors = require('./cors')
 
@@ -39,7 +41,7 @@ app.use((req,res,next)=>{
     next();
 })
 
-
+app.use('/v1/job', authMiddleware, jobRouter);
 app.use('/v1/auth/',authRoute)
 
 //create error.txt and keep records of all error
